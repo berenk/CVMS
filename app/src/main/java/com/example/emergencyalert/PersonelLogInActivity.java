@@ -34,6 +34,8 @@ public class PersonelLogInActivity extends AppCompatActivity {
     static SharedPreferences sharedPref;
     ImageView changeLang ;
 
+
+
     CheckBox rememberMeCheckbox ;
 
     SharedPreferences prefs ;
@@ -83,6 +85,10 @@ public class PersonelLogInActivity extends AppCompatActivity {
                     rememberMeSave("False","","");
                 }
                 //Login işlemi
+
+                //Login işlemi sonu
+
+
 
 
             }
@@ -203,4 +209,6 @@ public class PersonelLogInActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

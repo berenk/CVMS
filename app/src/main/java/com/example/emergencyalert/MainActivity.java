@@ -26,16 +26,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
     ImageView settings;
-    List<Notifications> list;
+    List<Notifications> list =  new ArrayList<>();
     RecyclerView recyclerView;
 
 
+    private boolean girisYaptiMi = false;
 
     RecyclerView.LayoutManager layoutManager;
     Adapter adapter;
@@ -74,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         db= FirebaseFirestore.getInstance();
-        list =  new ArrayList<>();
+
+
+
 
         readData();
         fill_list();
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void  fill_list()  {
-        adapter = new Adapter(this,list);
+        adapter = new Adapter(this, list);
         recyclerView.setAdapter(adapter);
 
     }
@@ -106,13 +110,22 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                          for (QueryDocumentSnapshot doc : value) {
+                             if (doc.getData().get("title") != null || doc.getData().get("body") != null) {
+                                 if (girisYaptiMi){
+                                     //eger giris yaptıysa personelin kategorisini al, db deki category ile kıyasla, eşleşiyorsa listeye ekle
+                                     list.add(0,new Notifications(doc.getData().get("title").toString(),doc.getData().get("body").toString()));
+                                 }else{
+                                     //eğer giriş yapmadıysa sadece öğrenci kategorisindeki duyuruları göster.
+                                     if (doc.getData().get("category").toString().equalsIgnoreCase("Ogrenci")){
+                                         list.add(0,new Notifications(doc.getData().get("title").toString(),doc.getData().get("body").toString()));
+                                     }
+                                 }
 
-                             if (doc.get("title") != null) {
-                                list.add(new Notifications(doc.getData().get("title").toString(),doc.getData().get("body").toString()));
 
-                            }
+                             }
 
                         }
+
                         fill_list();
                      }
                 });
