@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">EmergencyAlert</string>
+    <string name="Akdeniz_Üniversitesi">Akdeniz Üniversitesi</string>
+    <string name="Acil_Durum_Bilgilendirme_Sistemi">Acil Durum Bilgilendirme Sistemi</string>
+    <string name="sifre">Şifre</string>
+    <string name="username">Kullanıcı adı</string>
+    <string name="giris">Giriş Yap</string>
+    <string name="Beni_hatırla" translatable="false">Beni Hatırla</string>
+    <string name="change_lang">Change Language</string>
+
+</resources>

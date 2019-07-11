@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sifre">Password</string>
+    <string name="username">Username</string>
+    <string name="giris">Login</string>
+    <string name="change_lang">Change Language</string>
+    <string name="Beni_hatırla" translatable="false">Remember me</string>
+    <string name="Akdeniz_Üniversitesi">Akdeniz University</string>
+    <string name="Acil_Durum_Bilgilendirme_Sistemi">Emergency Alert System</string>
+</resources>
