@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         readData();
         fill_list();
-        FirebaseMessaging.getInstance().subscribeToTopic("Ogrenciler");
+        FirebaseMessaging.getInstance().subscribeToTopic("Ogrenci");
 
 
     }
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                          for (QueryDocumentSnapshot doc : value) {
-                             if (doc.getData().get("title") != null || doc.getData().get("body") != null) {
+                             if (doc.getData().get("title") != null || doc.getData().get("body") != null || doc.getData().get("category") != null) {
                                  if (girisYaptiMi){
                                      //eger giris yaptıysa personelin kategorisini al, db deki category ile kıyasla, eşleşiyorsa listeye ekle
                                      list.add(0,new Notifications(doc.getData().get("title").toString(),doc.getData().get("body").toString()));
