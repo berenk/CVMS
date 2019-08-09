@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -85,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
         readData();
         fill_list();
         FirebaseMessaging.getInstance().subscribeToTopic("Ogrenci");
+
+        //Web Service
+        /*
+        PersonelParameters parameters = new PersonelParameters();
+        PersonelDogrulamaTask task = new PersonelDogrulamaTask();
+        task.input = parameters;
+        task.execute("");
+        */
+
+
+
 
 
     }
@@ -189,4 +202,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private class PersonelDogrulamaTask extends AsyncTask<String,Void,String> {
+        public boolean sonuc;
+        public PersonelParameters input;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            WebServiceCaller i = new WebServiceCallerImpl();
+            sonuc=i.PersonelDogrula(input);
+            return "";
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext() , "Sonuç : " + sonuc,Toast.LENGTH_LONG).show();
+
+        }
+    }
 }
+
+

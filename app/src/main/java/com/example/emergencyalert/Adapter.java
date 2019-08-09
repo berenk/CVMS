@@ -33,7 +33,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
           myViewHolder.title.setText(list.get(i).getTitle());
           myViewHolder.description.setText(list.get(i).getDescription());
-          myViewHolder.date.setText(list.get(i).getDate());
+          myViewHolder.date.setText(tarihHazirla(list.get(i).getDate()));
+
+    }
+
+    public String tarihHazirla(String gelenTarih){
+        String donecekString =  "";
+        String yil = "";
+        String ay = "";
+        String gun = "";
+        String saat = "";
+
+        yil = gelenTarih.substring(0,4);
+        ay = gelenTarih.substring(5,7);
+        gun = gelenTarih.substring(8,10);
+
+        saat = gelenTarih.substring(11);
+
+        donecekString = gun + "-" + ay + "-" + yil + " " + saat;
+
+        return donecekString ;
+
+
     }
 
     @Override
